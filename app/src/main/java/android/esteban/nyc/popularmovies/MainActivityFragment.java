@@ -28,6 +28,8 @@ public class MainActivityFragment extends Fragment {
             Picasso.with(getActivity()).load("http://i.imgur.com/DvpvklR.png")
                 .into(picView);
         }
+        GetMoviesTask getMoviesTask = new GetMoviesTask();
+        getMoviesTask.execute();
         return rootView;
     }
 }
