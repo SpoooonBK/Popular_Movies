@@ -1,8 +1,10 @@
 package android.esteban.nyc.popularmovies;
 
+import android.os.AsyncTask;
+
 import org.json.JSONObject;
 
-import java.util.ArrayList;
+import java.net.URI;
 import java.util.List;
 
 /**
@@ -11,14 +13,19 @@ import java.util.List;
 public class MovieDAO {
 
     public static List<Movie> getMovieList(){
-        List<Movie> movies = new ArrayList<Movie>();
-        return movies;
+        JSONObject movieListData = getMovieData(buildURI());
+        return MovieFactory.buildMovieList(movieListData);
     }
 
-    public JSONObject getMovieData(){
+    public static JSONObject getMovieData(URI uri){
         JSONObject jsonObject = null;
 
         return jsonObject;
+    }
+
+    public static URI buildURI(){
+        URI uri = null;
+        return uri;
     }
 
 
