@@ -2,6 +2,7 @@ package android.esteban.nyc.popularmovies;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,8 +29,11 @@ public class MainActivityFragment extends Fragment {
             Picasso.with(getActivity()).load("http://i.imgur.com/DvpvklR.png")
                 .into(picView);
         }
+//        TODO: TEST CODE
+        String apikey = PropertyReader.readProperty(getActivity());
+        Log.d("Popular Movies","API KEY: " + apikey );
         GetMoviesTask getMoviesTask = new GetMoviesTask();
-        getMoviesTask.execute();
+        getMoviesTask.execute(apikey);
         return rootView;
     }
 }
