@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
+import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
@@ -44,41 +45,44 @@ public class MainActivityFragment extends Fragment {
             e.printStackTrace();
         }
 
-        if (movies != null){
-            populateGrid(rootView, (GridLayout) rootView.findViewById(R.id.movieGrid), movies);
-        }
+        GridView grid = (GridView)rootView.findViewById(R.id.movieGrid);
+        grid.setAdapter( new MovieImageAdapter(rootView.getContext(), movies) );
+
+//        if (movies != null){
+//            populateGrid(rootView, (GridLayout) rootView.findViewById(R.id.movieGrid), movies);
+//        }
 
         return rootView;
     }
 
-    private void populateGrid(final View rootview, GridLayout grid, List<Movie> movies){
-
-        int rowCount;
-        int colCount = 2;
-
-        rowCount = Math.round(movies.size()/colCount);
-
-        grid.setColumnCount(colCount);
-        grid.setRowCount(rowCount);
-
-        for(final Movie movie: movies){
-            final ImageView imageView = new ImageView(rootview.getContext());
-            grid.addView(imageView);
-            Picasso.with(getActivity()).load(movie.getPosterPath())
-                    .into(imageView);
-            imageView.isFocusable();
-            imageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent detailIntent = new Intent(rootview.getContext(),DetailActivity.class);
-                    detailIntent.putExtra("MOVIE_TITLE", movie.getTitle() );
-                    detailIntent.putExtra("RELEASE_DATE", movie.getReleaseDate());
-                    detailIntent.putExtra("OVERVIEW", movie.getOverview());
-                    detailIntent.putExtra("POSTER_PATH", movie.getPosterPath());
-                    startActivity(detailIntent);
-                }
-            });
-        }
-
-    }
+//    private void populateGrid(final View rootview, GridView grid, List<Movie> movies){
+//
+//        int rowCount;
+//        int colCount = 2;
+//
+//        rowCount = Math.round(movies.size()/colCount);
+//
+//        grid.setColumnCount(colCount);
+//        grid.setRowCount(rowCount);
+//
+//        for(final Movie movie: movies){
+//            final ImageView imageView = new ImageView(rootview.getContext());
+//            grid.addView(imageView);
+//            Picasso.with(getActivity()).load(movie.getPosterPath())
+//                    .into(imageView);
+//            imageView.isFocusable();
+//            imageView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent detailIntent = new Intent(rootview.getContext(),DetailActivity.class);
+//                    detailIntent.putExtra("MOVIE_TITLE", movie.getTitle() );
+//                    detailIntent.putExtra("RELEASE_DATE", movie.getReleaseDate());
+//                    detailIntent.putExtra("OVERVIEW", movie.getOverview());
+//                    detailIntent.putExtra("POSTER_PATH", movie.getPosterPath());
+//                    startActivity(detailIntent);
+//                }
+//            });
+////        }
+//
+//    }
 }

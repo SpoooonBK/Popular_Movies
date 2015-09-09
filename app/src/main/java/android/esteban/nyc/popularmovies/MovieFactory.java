@@ -22,6 +22,8 @@ public class MovieFactory {
     private static final String OVERVIEW = "overview";
     private static final String RELEASE_DATE = "release_date";
     private static final String POSTER_PATH = "poster_path";
+    private static final String POPULARITY = "popularity";
+    private static final String RATING = "vote_average";
 
     public static
     List<Movie> buildMovieList (String movieData) {
@@ -54,9 +56,11 @@ public class MovieFactory {
         String overview = movieData.getString(OVERVIEW);
         String releaseDate = movieData.getString(RELEASE_DATE);
         String posterPath = movieData.getString(POSTER_PATH);
+        Double popularity = movieData.getDouble(POPULARITY);
+        Double rating = movieData.getDouble(RATING);
 
 
-        Movie movie =  new Movie(title,overview,releaseDate,posterPath );
+        Movie movie =  new Movie(title,overview,releaseDate,posterPath, popularity, rating );
         return movie;
     }
 }

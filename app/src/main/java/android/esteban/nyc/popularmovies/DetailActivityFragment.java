@@ -25,6 +25,7 @@ public class DetailActivityFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
         ImageView imageView = (ImageView)rootView.findViewById(R.id.posterImage);
         Intent intent = getActivity().getIntent();
+
         if(intent.hasExtra("POSTER_PATH")){
             String posterPath = intent.getStringExtra("POSTER_PATH");
             Picasso.with(getActivity()).load(posterPath)
@@ -45,6 +46,7 @@ public class DetailActivityFragment extends Fragment {
             TextView releaseDate = (TextView)rootView.findViewById(R.id.releaseDate);
             releaseDate.setText(intent.getStringExtra("RELEASE_DATE"));
         }
+
 
         return rootView;
     }
