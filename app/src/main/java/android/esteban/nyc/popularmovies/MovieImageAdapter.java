@@ -1,5 +1,6 @@
 package android.esteban.nyc.popularmovies;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -8,6 +9,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -58,9 +60,10 @@ public class MovieImageAdapter extends BaseAdapter {
         }
 
         Picasso.with(context).load(movies.get(position).getPosterPath()).into(imageView);
-
-        imageView.setLayoutParams(
-                new GridView.LayoutParams(400, 400));
+        
+//Todo fix gridview size
+//        imageView.setLayoutParams(
+//                new GridView.LayoutParams(imageView.getWidth(), imageView.getHeight()));
 
         imageView.isFocusable();
         imageView.setOnClickListener(new View.OnClickListener() {
